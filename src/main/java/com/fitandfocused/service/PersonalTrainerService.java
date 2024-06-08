@@ -67,7 +67,7 @@ public class PersonalTrainerService {
     public CancellationPolicy setCancellationPolicy(CancellationPolicyDTO cancellationPolicyDTO) {
         Optional<PersonalTrainer> optionalPersonalTrainer = personalTrainerRepository.findById(cancellationPolicyDTO.getTrainerId());
         if (optionalPersonalTrainer.isEmpty()) {
-            throw new IllegalArgumentException("PersonalTrainer não encontrado.");
+            throw new IllegalArgumentException("Personal Trainer não encontrado.");
         }
 
         if (cancellationPolicyDTO.getMinimumNoticeHours() == null) {
