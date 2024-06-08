@@ -1,4 +1,4 @@
-package com.fitAndFocused;
+package com.fitandfocused;
 
 import org.springframework.boot.SpringApplication;
 
