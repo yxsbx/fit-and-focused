@@ -38,6 +38,12 @@ public class PersonalTrainerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(personalTrainer);
     }
 
+    @GetMapping("/verifyCredentials/{cref}")
+    public ResponseEntity<Boolean> verifyCredentials(@PathVariable String cref) {
+        boolean isValid = personalTrainerService.verifyCref(cref);
+        return ResponseEntity.ok(isValid);
+    }
+
     @PostMapping("/schedule")
     public ResponseEntity<WorkoutPlan> createWorkoutPlan(@RequestBody WorkoutPlanDTO workoutPlanDTO) {
         WorkoutPlan workoutPlan = workoutPlanService.createWorkoutPlan(workoutPlanDTO);
@@ -56,15 +62,16 @@ public class PersonalTrainerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(workingDays);
     }
 
-    @PostMapping("/setCancellationPolicy")
-    public ResponseEntity<CancellationPolicy> setCancellationPolicy(@RequestBody CancellationPolicyDTO cancellationPolicyDTO) {
-        CancellationPolicy policy = personalTrainerService.setCancellationPolicy(cancellationPolicyDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(policy);
-    }
+//    @PostMapping("/setCancellationPolicy")
+//    public ResponseEntity<CancellationPolicy> setCancellationPolicy(@RequestBody CancellationPolicyDTO cancellationPolicyDTO) {
+//        CancellationPolicy policy = personalTrainerService.setCancellationPolicy(cancellationPolicyDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(policy);
+//    }
 
-    @GetMapping("/{trainerId}/reviews")
-    public ResponseEntity<List<Review>> getReviews(@PathVariable Long trainerId) {
-        List<Review> reviews = personalTrainerService.getReviews(trainerId);
+    @GetMapping("/{userId}/reviews")
+    public ResponseEntity<List<Review>> getReviews(@PathVariable Long userId) {
+        List<Review> reviews = personalTrainerService.getReviews(userId);
         return ResponseEntity.ok(reviews);
     }
+
 }

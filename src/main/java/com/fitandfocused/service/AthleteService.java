@@ -17,6 +17,7 @@ public class AthleteService {
     private final AthleteRepository athleteRepository;
     private final ReviewRepository reviewRepository;
 
+    // Todos os campos obrigatorios, password criptografada, email unico, contato único
     public Athlete registerUser(UserDTO userDTO) {
         Athlete athlete = new Athlete();
         athlete.setName(userDTO.getName());
@@ -27,26 +28,21 @@ public class AthleteService {
         return athleteRepository.save(athlete);
     }
 
-    public boolean verifyCref(String cref) {
-        return true;
-    }
-
+    // Futuramente, implementar report de profissionais
+    // Quantidade de estrelas obrigatório para somente o primeiro treino do atleta com determinado profissional
+    // Texto do review opcional
+    // Aparecer somente ao final do treino
     public Review addReview(ReviewDTO reviewDTO) {
         Review review = new Review();
         review.setUserId(reviewDTO.getUserId());
         review.setTrainerId(reviewDTO.getTrainerId());
         review.setComment(reviewDTO.getComment());
-        review.setRating(reviewDTO.getRating());
+        review.setRating(reviewDTO.getRating()); // 1 a 5 estrelas
         return reviewRepository.save(review);
     }
 
-    public List<Review> getReviews(Long userId) {
-        return reviewRepository.findAll();
-    }
-
-
-    public boolean checkAvailability(Long userId, String day, String startTime, String endTime) {
+    // Verifica se o atleta tem disponibilidade no horário informado
+    public boolean getWorkingDays(Long userId, String day, String startTime, String endTime) {
         return true;
     }
-
 }

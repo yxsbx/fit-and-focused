@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PaymentService {
 
+    // API to process payment => qualquer uma que seja de graça
+    // Personal paga mensalidade para a plataforma para achar clientes
     public String processPayment(String paymentRequest) {
         return "";
     }
